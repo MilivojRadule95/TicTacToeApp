@@ -1,2 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿
+using TicTacToeLibrary;
+
+TicTacToeGame game = new TicTacToeGame();
+game.NewGame();
+
+Console.WriteLine(game);

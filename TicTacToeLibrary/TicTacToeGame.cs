@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace TicTacToeLibrary
 {
-    public class TicTacToeLogic
+    public class TicTacToeGame
     {
+        private GridSpotStatus OnTheMove;
+
+        private GridSpotStatus[] grid = new GridSpotStatus[9];
+
         public enum GridSpotStatus
         {
             N,
             X,
             O
         }
-
-        private GridSpotStatus[] grid = new GridSpotStatus[9];
 
         public GridSpotStatus GetWinner()
         {
@@ -121,7 +123,7 @@ namespace TicTacToeLibrary
 
             if (IsGridFull() == true)
             {
-                return true;
+                return true;                                                                                                                                             
             }
 
             return false;
@@ -139,7 +141,74 @@ namespace TicTacToeLibrary
             return true;
         }
 
+        public void SwapPlayer()
+        {
+            if (OnTheMove == GridSpotStatus.X)
+            {
+                OnTheMove = GridSpotStatus.O;
+                return;
+            }
+
+            OnTheMove = GridSpotStatus.X;
+        }
+
+        public void NewGame()
+        {
+            for (int i = 0; i < grid.Length; i++)
+            {
+                grid[i] = GridSpotStatus.N;
+            }
+
+            OnTheMove = GridSpotStatus.X;
+        }
+
+        public List<int> GetLegalMoves() 
+        {
+            List<int> output = new List<int>();
+
+            for (int i = 0; i < grid.Length; i++)
+            {
+                if (grid[i] == GridSpotStatus.N)
+                {
+                    output.Add(i);
+                }
+                
+            }
+
+            return output;
+        }
 
 
+
+
+        public override string ToString()
+        {
+            string output = "";
+
+            output += grid[0].ToString();
+            output += "   ";
+            output += grid[1].ToString();
+            output += "   ";
+            output += grid[2].ToString();
+
+            output += "\n";
+
+            output += grid[3].ToString();
+            output += "   ";
+            output += grid[4].ToString();
+            output += "   ";
+            output += grid[5].ToString();
+
+            output += "\n";
+
+            output += grid[6].ToString();
+            output += "   ";
+            output += grid[7].ToString();
+            output += "   ";
+            output += grid[8].ToString();
+
+
+            return output;
+        }
     }
 }
