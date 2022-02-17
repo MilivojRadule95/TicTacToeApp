@@ -178,7 +178,10 @@ namespace TicTacToeLibrary
             return output;
         }
 
+        public void MakeAMove(int move)
+        {
 
+        }
 
 
         public override string ToString()
