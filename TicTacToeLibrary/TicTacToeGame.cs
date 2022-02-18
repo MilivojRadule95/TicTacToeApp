@@ -8,16 +8,16 @@ namespace TicTacToeLibrary
 {
     public class TicTacToeGame
     {
-        private GridSpotStatus OnTheMove;
-
-        private GridSpotStatus[] grid = new GridSpotStatus[9];
-
         public enum GridSpotStatus
         {
             N,
             X,
             O
         }
+
+        private GridSpotStatus OnTheMove;
+
+        private GridSpotStatus[] grid = new GridSpotStatus[9];
 
         public GridSpotStatus GetWinner()
         {
@@ -141,7 +141,7 @@ namespace TicTacToeLibrary
             return true;
         }
 
-        public void SwapPlayer()
+        private void SwapPlayer()
         {
             if (OnTheMove == GridSpotStatus.X)
             {
@@ -162,6 +162,7 @@ namespace TicTacToeLibrary
             OnTheMove = GridSpotStatus.X;
         }
 
+        // GetLegalMoves represents a List of integers which in turn represent indexs of avaiable spots on the board. 
         public List<int> GetLegalMoves() 
         {
             List<int> output = new List<int>();
@@ -180,7 +181,12 @@ namespace TicTacToeLibrary
 
         public void MakeAMove(int move)
         {
+            if (GetLegalMoves().Contains(move))
+            {
+                grid[move] = OnTheMove;
 
+                SwapPlayer();
+            }
         }
 
 
